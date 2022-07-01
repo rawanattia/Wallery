@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine.UI;
+﻿using UnityEngine.UI;
 
 namespace UnityEngine.XR.ARFoundation.Samples
 {
@@ -52,11 +51,11 @@ namespace UnityEngine.XR.ARFoundation.Samples
             else
                 SetUIValue<float>(null, ambientColorText);
         }
-        
+
         void SetUIValue<T>(T? displayValue, Text text) where T : struct
         {
             if (text != null)
-                text.text = displayValue.HasValue ? displayValue.Value.ToString(): "Unavailable";
+                text.text = displayValue.HasValue ? displayValue.Value.ToString() : "Unavailable";
         }
 
         BasicLightEstimation m_BasicLightEstimation;

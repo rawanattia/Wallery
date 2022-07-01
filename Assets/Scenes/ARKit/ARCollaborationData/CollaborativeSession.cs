@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-
-#if UNITY_IOS && !UNITY_EDITOR
+﻿#if UNITY_IOS && !UNITY_EDITOR
 using Unity.iOS.Multipeer;
 using UnityEngine.XR.ARKit;
 #endif
@@ -36,7 +33,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         void OnEnable()
         {
-    #if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
             var subsystem = GetSubsystem();
             if (!ARKitSessionSubsystem.supportsCollaboration || subsystem == null)
             {
@@ -46,12 +43,12 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
             subsystem.collaborationRequested = true;
             m_MCSession.Enabled = true;
-    #else
+#else
             DisableNotSupported("Collaborative sessions are an ARKit 3 feature; This platform does not support them.");
-    #endif
+#endif
         }
 
-    #if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS && !UNITY_EDITOR
         MCSession m_MCSession;
 
         ARKitSessionSubsystem GetSubsystem()
@@ -139,6 +136,6 @@ namespace UnityEngine.XR.ARFoundation.Samples
         {
             m_MCSession.Dispose();
         }
-    #endif
+#endif
     }
 }

@@ -1,6 +1,5 @@
 using System.Text;
 using UnityEngine.UI;
-using UnityEngine.XR.ARFoundation;
 
 namespace UnityEngine.XR.ARFoundation.Samples
 {

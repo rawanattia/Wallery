@@ -1,8 +1,6 @@
-﻿using UnityEngine.XR.ARFoundation;
-using UnityEngine;
-using UnityEngine.XR.ARSubsystems;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using UnityEngine.XR.ARSubsystems;
 
 namespace UnityEngine.XR.ARFoundation.Samples
 {

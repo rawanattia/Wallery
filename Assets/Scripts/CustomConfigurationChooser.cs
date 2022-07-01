@@ -2,7 +2,6 @@ using System;
 using Unity.Collections;
 using UnityEngine.UI;
 using UnityEngine.XR.ARSubsystems;
-using UnityEngine.XR.ARFoundation;
 
 namespace UnityEngine.XR.ARFoundation.Samples
 {

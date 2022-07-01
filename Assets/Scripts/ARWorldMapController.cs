@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using Unity.Collections;
-using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 #if UNITY_IOS
 using UnityEngine.XR.ARKit;
@@ -105,9 +101,9 @@ namespace UnityEngine.XR.ARFoundation.Samples
         /// </summary>
         public void OnSaveButton()
         {
-    #if UNITY_IOS
+#if UNITY_IOS
             StartCoroutine(Save());
-    #endif
+#endif
         }
 
         /// <summary>
@@ -116,9 +112,9 @@ namespace UnityEngine.XR.ARFoundation.Samples
         /// </summary>
         public void OnLoadButton()
         {
-    #if UNITY_IOS
+#if UNITY_IOS
             StartCoroutine(Load());
-    #endif
+#endif
         }
 
         /// <summary>
@@ -131,7 +127,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
             m_ARSession.Reset();
         }
 
-    #if UNITY_IOS
+#if UNITY_IOS
         IEnumerator Save()
         {
             var sessionSubsystem = (ARKitSessionSubsystem)m_ARSession.subsystem;
@@ -224,7 +220,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
             worldMap.Dispose();
             Log(string.Format("ARWorldMap written to {0}", path));
         }
-    #endif
+#endif
 
         string path
         {
@@ -238,11 +234,11 @@ namespace UnityEngine.XR.ARFoundation.Samples
         {
             get
             {
-    #if UNITY_IOS
+#if UNITY_IOS
                 return m_ARSession.subsystem is ARKitSessionSubsystem && ARKitSessionSubsystem.worldMapSupported;
-    #else
+#else
                 return false;
-    #endif
+#endif
             }
         }
 
@@ -291,11 +287,11 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 SetActive(mappingStatusText, false);
             }
 
-    #if UNITY_IOS
+#if UNITY_IOS
             var sessionSubsystem = (ARKitSessionSubsystem)m_ARSession.subsystem;
-    #else
+#else
             XRSessionSubsystem sessionSubsystem = null;
-    #endif
+#endif
             if (sessionSubsystem == null)
                 return;
 
@@ -308,9 +304,9 @@ namespace UnityEngine.XR.ARFoundation.Samples
             }
             SetText(logText, msg);
 
-    #if UNITY_IOS
+#if UNITY_IOS
             SetText(mappingStatusText, string.Format("Mapping Status: {0}", sessionSubsystem.worldMappingStatus));
-    #endif
+#endif
         }
 
         List<string> m_LogMessages;

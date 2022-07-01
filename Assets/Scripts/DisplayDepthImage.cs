@@ -1,6 +1,5 @@
 using System.Text;
 using UnityEngine.UI;
-using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
 namespace UnityEngine.XR.ARFoundation.Samples
@@ -180,8 +179,8 @@ namespace UnityEngine.XR.ARFoundation.Samples
         void Awake()
         {
 #if UNITY_ANDROID
-            k_AndroidFlipYMatrix[1,1] = -1.0f;
-            k_AndroidFlipYMatrix[2,1] = 1.0f;
+            k_AndroidFlipYMatrix[1, 1] = -1.0f;
+            k_AndroidFlipYMatrix[2, 1] = 1.0f;
 #endif // UNITY_ANDROID
         }
 
@@ -216,61 +215,61 @@ namespace UnityEngine.XR.ARFoundation.Samples
             {
                 case DisplayMode.HumanDepth:
                 case DisplayMode.HumanStencil:
-                {
-                    if (descriptor != null &&
-                        (descriptor.humanSegmentationDepthImageSupported == Supported.Supported ||
-                        descriptor.humanSegmentationStencilImageSupported == Supported.Supported))
                     {
-                        break;
-                    }
+                        if (descriptor != null &&
+                            (descriptor.humanSegmentationDepthImageSupported == Supported.Supported ||
+                            descriptor.humanSegmentationStencilImageSupported == Supported.Supported))
+                        {
+                            break;
+                        }
 
-                    if (descriptor != null &&
-                        (descriptor.humanSegmentationStencilImageSupported == Supported.Unknown ||
-                         descriptor.humanSegmentationDepthImageSupported == Supported.Unknown))
-                    {
-                        LogText("Determining human segmentation support...");
-                    }
-                    else
-                    {
-                        LogText("Human segmentation is not supported on this device.");
-                    }
+                        if (descriptor != null &&
+                            (descriptor.humanSegmentationStencilImageSupported == Supported.Unknown ||
+                             descriptor.humanSegmentationDepthImageSupported == Supported.Unknown))
+                        {
+                            LogText("Determining human segmentation support...");
+                        }
+                        else
+                        {
+                            LogText("Human segmentation is not supported on this device.");
+                        }
 
-                    m_RawImage.texture = null;
-                    if (!Mathf.Approximately(m_TextureAspectRatio, k_DefaultTextureAspectRadio))
-                    {
-                        m_TextureAspectRatio = k_DefaultTextureAspectRadio;
-                        UpdateRawImage();
-                    }
+                        m_RawImage.texture = null;
+                        if (!Mathf.Approximately(m_TextureAspectRatio, k_DefaultTextureAspectRadio))
+                        {
+                            m_TextureAspectRatio = k_DefaultTextureAspectRadio;
+                            UpdateRawImage();
+                        }
 
-                    return;
-                }
+                        return;
+                    }
                 case DisplayMode.EnvironmentDepthRaw:
                 case DisplayMode.EnvironmentDepthSmooth:
                 default:
-                {
-                    if (descriptor == null || descriptor.environmentDepthImageSupported == Supported.Unsupported)
                     {
-                        LogText("Environment depth is not supported on this device.");
-                    }
-                    else if (descriptor.environmentDepthImageSupported == Supported.Unknown)
-                    {
-                        LogText("Determining environment depth support...");
-                    }
-                    else if (descriptor.environmentDepthImageSupported == Supported.Supported)
-                    {
-                        m_OcclusionManager.environmentDepthTemporalSmoothingRequested = m_DisplayMode == DisplayMode.EnvironmentDepthSmooth;
-                        break;
-                    }
+                        if (descriptor == null || descriptor.environmentDepthImageSupported == Supported.Unsupported)
+                        {
+                            LogText("Environment depth is not supported on this device.");
+                        }
+                        else if (descriptor.environmentDepthImageSupported == Supported.Unknown)
+                        {
+                            LogText("Determining environment depth support...");
+                        }
+                        else if (descriptor.environmentDepthImageSupported == Supported.Supported)
+                        {
+                            m_OcclusionManager.environmentDepthTemporalSmoothingRequested = m_DisplayMode == DisplayMode.EnvironmentDepthSmooth;
+                            break;
+                        }
 
-                    m_RawImage.texture = null;
-                    if (!Mathf.Approximately(m_TextureAspectRatio, k_DefaultTextureAspectRadio))
-                    {
-                        m_TextureAspectRatio = k_DefaultTextureAspectRadio;
-                        UpdateRawImage();
-                    }
+                        m_RawImage.texture = null;
+                        if (!Mathf.Approximately(m_TextureAspectRatio, k_DefaultTextureAspectRadio))
+                        {
+                            m_TextureAspectRatio = k_DefaultTextureAspectRadio;
+                            UpdateRawImage();
+                        }
 
-                    return;
-                }
+                        return;
+                    }
             }
 
             // Get all of the occlusion textures.
@@ -355,12 +354,12 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 affineBasisX = affineBasisX.normalized;
                 affineBasisY = affineBasisY.normalized;
                 m_DisplayRotationMatrix = Matrix4x4.identity;
-                m_DisplayRotationMatrix[0,0] = affineBasisX.x;
-                m_DisplayRotationMatrix[0,1] = affineBasisY.x;
-                m_DisplayRotationMatrix[1,0] = affineBasisX.y;
-                m_DisplayRotationMatrix[1,1] = affineBasisY.y;
-                m_DisplayRotationMatrix[2,0] = Mathf.Round(affineTranslation.x);
-                m_DisplayRotationMatrix[2,1] = Mathf.Round(affineTranslation.y);
+                m_DisplayRotationMatrix[0, 0] = affineBasisX.x;
+                m_DisplayRotationMatrix[0, 1] = affineBasisY.x;
+                m_DisplayRotationMatrix[1, 0] = affineBasisX.y;
+                m_DisplayRotationMatrix[1, 1] = affineBasisY.y;
+                m_DisplayRotationMatrix[2, 0] = Mathf.Round(affineTranslation.x);
+                m_DisplayRotationMatrix[2, 1] = Mathf.Round(affineTranslation.y);
 
 #if UNITY_ANDROID
                 m_DisplayRotationMatrix = k_AndroidFlipYMatrix * m_DisplayRotationMatrix;

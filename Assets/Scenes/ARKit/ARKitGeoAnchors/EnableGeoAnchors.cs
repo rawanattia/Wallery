@@ -1,10 +1,4 @@
-﻿using System;
-using Unity.Collections;
-using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
-
-#if UNITY_IOS
+﻿#if UNITY_IOS
 using System.Runtime.InteropServices;
 using UnityEngine.XR.ARKit;
 #endif

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace UnityEngine.XR.ARFoundation.Samples
+﻿namespace UnityEngine.XR.ARFoundation.Samples
 {
     public enum MenuType
     {

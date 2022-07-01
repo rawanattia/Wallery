@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-
-namespace UnityEngine.XR.ARFoundation.Samples
+﻿namespace UnityEngine.XR.ARFoundation.Samples
 {
     /// <summary>
     /// This script enables face tracking with user facing camera and disables it otherwise.

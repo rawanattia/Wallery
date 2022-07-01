@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace UnityEngine.XR.ARFoundation.Samples
+﻿namespace UnityEngine.XR.ARFoundation.Samples
 {
     [RequireComponent(typeof(MeshRenderer))]
     public class EnvironmentProbeVisualizer : MonoBehaviour

@@ -1,10 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.XR.ARFoundation;
-
-namespace UnityEngine.XR.ARFoundation.Samples
+﻿namespace UnityEngine.XR.ARFoundation.Samples
 {
     /// <summary>
     /// Displays information about each reference point including

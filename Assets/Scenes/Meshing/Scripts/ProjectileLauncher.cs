@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace UnityEngine.XR.ARFoundation.Samples
+﻿namespace UnityEngine.XR.ARFoundation.Samples
 {
     /// <summary>
     /// Launches projectiles from a touch point with the specified <see cref="initialSpeed"/>.

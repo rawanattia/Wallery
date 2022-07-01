@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Text = UnityEngine.UI.Text;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
+﻿using Text = UnityEngine.UI.Text;
 
 namespace UnityEngine.XR.ARFoundation.Samples
 {

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-using UnityEngine.XR.ARSubsystems;
+﻿using UnityEngine.XR.ARSubsystems;
 #if UNITY_IOS && !UNITY_EDITOR
 using UnityEngine.XR.ARKit;
 #endif
@@ -40,7 +36,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         void CreateEyeGameObjectsIfNecessary()
         {
-            if (m_Face.leftEye != null && m_LeftEyeGameObject == null )
+            if (m_Face.leftEye != null && m_LeftEyeGameObject == null)
             {
                 m_LeftEyeGameObject = Instantiate(m_EyePrefab, m_Face.leftEye);
                 m_LeftEyeGameObject.SetActive(false);

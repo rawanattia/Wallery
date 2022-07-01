@@ -1,6 +1,4 @@
 ﻿using System;
-using UnityEngine;
-using UnityEngine.XR.ARFoundation;
 #if UNITY_IOS
 using UnityEngine.XR.ARKit;
 #endif
@@ -24,15 +22,15 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         [SerializeField]
         [Tooltip("The coaching goal associated with the coaching overlay.")]
-    #if !UNITY_IOS
-        #pragma warning disable CS0414
-    #endif
+#if !UNITY_IOS
+#pragma warning disable CS0414
+#endif
         CoachingGoal m_Goal = CoachingGoal.Tracking;
-    #if !UNITY_IOS
-        #pragma warning restore CS0414
-    #endif
+#if !UNITY_IOS
+#pragma warning restore CS0414
+#endif
 
-    #if UNITY_IOS
+#if UNITY_IOS
         /// <summary>
         /// The [ARCoachingGoal](https://developer.apple.com/documentation/arkit/arcoachinggoal) associated with the coaching overlay
         /// </summary>
@@ -59,7 +57,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 }
             }
         }
-    #endif
+#endif
 
         [SerializeField]
         [Tooltip("Whether the coaching overlay activates automatically.")]
@@ -72,12 +70,12 @@ namespace UnityEngine.XR.ARFoundation.Samples
         {
             get
             {
-    #if UNITY_IOS
+#if UNITY_IOS
                 if (supported && GetComponent<ARSession>().subsystem is ARKitSessionSubsystem sessionSubsystem)
                 {
                     return sessionSubsystem.coachingActivatesAutomatically;
                 }
-    #endif
+#endif
                 return m_ActivatesAutomatically;
             }
 
@@ -85,12 +83,12 @@ namespace UnityEngine.XR.ARFoundation.Samples
             {
                 m_ActivatesAutomatically = value;
 
-    #if UNITY_IOS
+#if UNITY_IOS
                 if (supported && GetComponent<ARSession>().subsystem is ARKitSessionSubsystem sessionSubsystem)
                 {
                     sessionSubsystem.coachingActivatesAutomatically = value;
                 }
-    #endif
+#endif
             }
         }
 
@@ -101,17 +99,17 @@ namespace UnityEngine.XR.ARFoundation.Samples
         {
             get
             {
-    #if UNITY_IOS
+#if UNITY_IOS
                 return ARKitSessionSubsystem.coachingOverlaySupported;
-    #else
+#else
                 return false;
-    #endif
+#endif
             }
         }
 
         void OnEnable()
         {
-    #if UNITY_IOS
+#if UNITY_IOS
             if (supported && GetComponent<ARSession>().subsystem is ARKitSessionSubsystem sessionSubsystem)
             {
                 sessionSubsystem.requestedCoachingGoal = (ARCoachingGoal)m_Goal;
@@ -119,7 +117,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 sessionSubsystem.sessionDelegate = new CustomSessionDelegate();
             }
             else
-    #endif
+#endif
             {
                 Debug.LogError("ARCoachingOverlayView is not supported by this device.");
             }
@@ -131,13 +129,13 @@ namespace UnityEngine.XR.ARFoundation.Samples
         /// <param name="animated">If <c>true</c>, the coaching overlay is animated, e.g. fades in. If <c>false</c>, the coaching overlay appears instantly, without any transition.</param>
         public void ActivateCoaching(bool animated)
         {
-    #if UNITY_IOS
+#if UNITY_IOS
             if (supported && GetComponent<ARSession>().subsystem is ARKitSessionSubsystem sessionSubsystem)
             {
                 sessionSubsystem.SetCoachingActive(true, animated ? ARCoachingOverlayTransition.Animated : ARCoachingOverlayTransition.Instant);
             }
             else
-    #endif
+#endif
             {
                 throw new NotSupportedException("ARCoachingOverlay is not supported");
             }
@@ -149,13 +147,13 @@ namespace UnityEngine.XR.ARFoundation.Samples
         /// <param name="animated">If <c>true</c>, the coaching overlay is animated, e.g. fades out. If <c>false</c>, the coaching overlay disappears instantly, without any transition.</param>
         public void DisableCoaching(bool animated)
         {
-    #if UNITY_IOS
+#if UNITY_IOS
             if (supported && GetComponent<ARSession>().subsystem is ARKitSessionSubsystem sessionSubsystem)
             {
                 sessionSubsystem.SetCoachingActive(false, animated ? ARCoachingOverlayTransition.Animated : ARCoachingOverlayTransition.Instant);
             }
             else
-    #endif
+#endif
             {
                 throw new NotSupportedException("ARCoachingOverlay is not supported");
             }

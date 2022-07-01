@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ARPlaneChanger : MonoBehaviour
@@ -13,17 +11,17 @@ public class ARPlaneChanger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     //when ChangePlaneBtn gets pressed we want to call this function, it goes to the next position, and it sets the current ground material to the pos which points to corresponding texture
-    public void NextPlane()
+   /* public void NextPlane()
     {
         pos = pos + 1;
         if (pos >= mats.Length)
@@ -33,7 +31,7 @@ public class ARPlaneChanger : MonoBehaviour
 
         //function used to change all current detected planes to the current choosen texture
         SetPosTo(pos);
-    }
+    }*/
 
     public void SetPosTo(int newPos)
     {

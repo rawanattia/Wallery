@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.XR.ARSubsystems;
 #if UNITY_IOS
 using UnityEngine.XR.ARKit;
 #endif
-using UnityEngine.XR.Management;
 
 namespace UnityEngine.XR.ARFoundation.Samples
 {
@@ -279,10 +275,10 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         void Start()
         {
-            if(!s_MeshingSupported)
+            if (!s_MeshingSupported)
             {
                 var activeLoader = LoaderUtility.GetActiveLoader();
-                if(activeLoader && activeLoader.GetLoadedSubsystem<XRMeshSubsystem>() != null)
+                if (activeLoader && activeLoader.GetLoadedSubsystem<XRMeshSubsystem>() != null)
                 {
                     s_MeshingSupported = true;
                 }
@@ -326,7 +322,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
             var bodyTrackingDescriptors = new List<XRHumanBodySubsystemDescriptor>();
             SubsystemManager.GetSubsystemDescriptors(bodyTrackingDescriptors);
 
-            if(planeDescriptors.Count > 0 && rayCastDescriptors.Count > 0)
+            if (planeDescriptors.Count > 0 && rayCastDescriptors.Count > 0)
             {
                 m_SimpleAR.interactable = true;
                 m_Scale.interactable = true;
@@ -336,7 +332,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 m_InputSystem.interactable = true;
             }
 
-            if(faceDescriptors.Count > 0)
+            if (faceDescriptors.Count > 0)
             {
                 m_FaceTracking.interactable = true;
 #if UNITY_IOS
@@ -345,9 +341,9 @@ namespace UnityEngine.XR.ARFoundation.Samples
 #if UNITY_ANDROID
                 m_FaceRegions.interactable = true;
 #endif
-                foreach(var faceDescriptor in faceDescriptors)
+                foreach (var faceDescriptor in faceDescriptors)
                 {
-                    if(faceDescriptor.supportsEyeTracking)
+                    if (faceDescriptor.supportsEyeTracking)
                     {
                         m_EyePoses.interactable = true;
                         m_FixationPoint.interactable = true;
@@ -357,9 +353,9 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 }
             }
 
-            if(occlusionDescriptors.Count > 0)
+            if (occlusionDescriptors.Count > 0)
             {
-                foreach(var occlusionDescriptor in occlusionDescriptors)
+                foreach (var occlusionDescriptor in occlusionDescriptors)
                 {
                     if (occlusionDescriptor.environmentDepthImageSupported != Supported.Unsupported ||
                         occlusionDescriptor.humanSegmentationDepthImageSupported != Supported.Unsupported ||
@@ -370,21 +366,21 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 }
             }
 
-            if(bodyTrackingDescriptors.Count > 0)
+            if (bodyTrackingDescriptors.Count > 0)
             {
-                foreach(var bodyTrackingDescriptor in bodyTrackingDescriptors)
+                foreach (var bodyTrackingDescriptor in bodyTrackingDescriptors)
                 {
-                    if(bodyTrackingDescriptor.supportsHumanBody2D || bodyTrackingDescriptor.supportsHumanBody3D)
+                    if (bodyTrackingDescriptor.supportsHumanBody2D || bodyTrackingDescriptor.supportsHumanBody3D)
                     {
                         m_BodyTracking.interactable = true;
                     }
                 }
             }
 
-            if(cameraDescriptors.Count > 0)
+            if (cameraDescriptors.Count > 0)
             {
                 m_LightEstimation.interactable = true;
-                foreach(var cameraDescriptor in cameraDescriptors)
+                foreach (var cameraDescriptor in cameraDescriptors)
                 {
                     if ((cameraDescriptor.supportsAverageBrightness || cameraDescriptor.supportsAverageIntensityInLumens) &&
                         (cameraDescriptor.supportsAverageColorTemperature || cameraDescriptor.supportsColorCorrection) && cameraDescriptor.supportsCameraConfigurations &&
@@ -402,22 +398,22 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 }
             }
 
-            if(imageDescriptors.Count > 0)
+            if (imageDescriptors.Count > 0)
             {
                 m_ImageTracking.interactable = true;
             }
 
-            if(envDescriptors.Count > 0)
+            if (envDescriptors.Count > 0)
             {
                 m_EnvironmentProbes.interactable = true;
             }
 
-            if(planeDescriptors.Count > 0)
+            if (planeDescriptors.Count > 0)
             {
                 m_PlaneDetection.interactable = true;
-                foreach(var planeDescriptor in planeDescriptors)
+                foreach (var planeDescriptor in planeDescriptors)
                 {
-                    if(planeDescriptor.supportsClassification)
+                    if (planeDescriptor.supportsClassification)
                     {
                         m_PlaneClassification.interactable = true;
                         break;
@@ -425,21 +421,21 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 }
             }
 
-            if(anchorDescriptors.Count > 0)
+            if (anchorDescriptors.Count > 0)
             {
                 m_Anchors.interactable = true;
             }
 
-            if(objectDescriptors.Count > 0)
+            if (objectDescriptors.Count > 0)
             {
                 m_ObjectTracking.interactable = true;
             }
 
-            if(cameraDescriptors.Count > 0)
+            if (cameraDescriptors.Count > 0)
             {
-                foreach(var cameraDescriptor in cameraDescriptors)
+                foreach (var cameraDescriptor in cameraDescriptors)
                 {
-                    if(cameraDescriptor.supportsCameraImage)
+                    if (cameraDescriptor.supportsCameraImage)
                     {
                         m_CpuImages.interactable = true;
                         break;
@@ -447,7 +443,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 }
             }
 
-    #if UNITY_IOS
+#if UNITY_IOS
             if(sessionDescriptors.Count > 0 && ARKitSessionSubsystem.worldMapSupported)
             {
                 m_ARWorldMap.interactable = true;
@@ -467,21 +463,21 @@ namespace UnityEngine.XR.ARFoundation.Samples
             {
                 m_ARKitCoachingOverlay.interactable = true;
             }
-    #endif
+#endif
 
-            if(depthDescriptors.Count > 0)
+            if (depthDescriptors.Count > 0)
             {
                 m_PointCloud.interactable = true;
             }
 
-            if(planeDescriptors.Count > 0)
+            if (planeDescriptors.Count > 0)
             {
-                m_PlaneOcclusion.interactable  = true;
+                m_PlaneOcclusion.interactable = true;
             }
 
             // Due to a change in XR Management version 4.0.2, where cached subsystems are cleared after XRLoader.Deinitialize is
             // called, meshing support needs to be checked once as support will not be changed with scene changes.
-            if(s_MeshingSupported)
+            if (s_MeshingSupported)
             {
                 m_Meshing.interactable = true;
             }

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.XR.ARFoundation;
+﻿using UnityEngine.UI;
 
 namespace UnityEngine.XR.ARFoundation.Samples
 {

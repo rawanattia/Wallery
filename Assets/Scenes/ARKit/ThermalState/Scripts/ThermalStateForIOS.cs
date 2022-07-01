@@ -1,7 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
-using UnityEngine;
 
 namespace UnityEngine.XR.ARFoundation.Samples
 {
@@ -124,7 +122,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
             /// </summary>
             /// <param name="previousThermalState">The previous thermal state for a state change event.</param>
             /// <param name="currentThermalState">The current thermal state for a state change event.</param>
-            public ThermalStateChange (ThermalState previousThermalState, ThermalState currentThermalState)
+            public ThermalStateChange(ThermalState previousThermalState, ThermalState currentThermalState)
             {
                 m_PreviousThermalState = previousThermalState;
                 m_CurrentThermalState = currentThermalState;

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
@@ -26,7 +25,7 @@ public class ARTapToPlaceObject : MonoBehaviour
 
     bool TryGetTouchPosition(out Vector2 touchPosition)
     {
-        if(Input.touchCount>0)
+        if (Input.touchCount > 0)
         {
             touchPosition = Input.GetTouch(0).position;
             return true;
@@ -42,19 +41,17 @@ public class ARTapToPlaceObject : MonoBehaviour
             return;
 
         //raycast takes touch position and number of hits and trackable types
-        if(ARRaycastManager.Raycast(touchPosition,hits,TrackableType.PlaneWithinPolygon))
+        if (ARRaycastManager.Raycast(touchPosition, hits, TrackableType.PlaneWithinPolygon))
         {
             var hitPose = hits[0].pose;
 
             //make sure no object has been instantiated already if so i can place new one and move it around freely(we canm change it to be atleast 5 objects etc depends on our conditions)
-            if(spawnedSocket==null)
+            if (spawnedSocket == null)
             {
                 spawnedSocket = Instantiate(socket, hitPose.position, hitPose.rotation);
                 spawnedSocket.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f); //make socket small
-              spawnedSocket.transform.localRotation = Quaternion.Euler(-90f, 0f, 0f);
-              //spawnedSocket.transform.LookAt(Vector3.zero);
-
-
+                spawnedSocket.transform.localRotation = Quaternion.Euler(-90f, 0f, 0f);
+                //spawnedSocket.transform.LookAt(Vector3.zero);
 
             }
             else

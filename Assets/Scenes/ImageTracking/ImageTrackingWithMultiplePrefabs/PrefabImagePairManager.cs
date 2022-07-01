@@ -3,10 +3,7 @@ using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.XR.ARSubsystems;
-using UnityEngine.XR.ARFoundation;
 
 namespace UnityEngine.XR.ARFoundation.Samples
 {
@@ -196,7 +193,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
                         var tempDictionary = new Dictionary<Guid, GameObject>();
                         foreach (var image in library)
                         {
-                            var prefab = (GameObject) EditorGUILayout.ObjectField(image.name, behaviour.m_PrefabsDictionary[image.guid], typeof(GameObject), false);
+                            var prefab = (GameObject)EditorGUILayout.ObjectField(image.name, behaviour.m_PrefabsDictionary[image.guid], typeof(GameObject), false);
                             tempDictionary.Add(image.guid, prefab);
                         }
 

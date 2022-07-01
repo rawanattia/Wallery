@@ -16,7 +16,7 @@ public class SpawnObjects : MonoBehaviour
     private int maxPrefabSpawnCount = 0;
     private int placedPrefabCount;
 
-   
+
 
     //for the prefab we'll be placing into the world
     [SerializeField]
@@ -33,7 +33,7 @@ public class SpawnObjects : MonoBehaviour
     //recording where user is pressing on the screen
     bool TryGetTouchPosition(out Vector2 touchPosition)
     {
-        if(Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.GetTouch(0).phase == TouchPhase.Began)
         {
             //store first touch as input
             touchPosition = Input.GetTouch(0).position;
@@ -46,13 +46,13 @@ public class SpawnObjects : MonoBehaviour
     private void Update()
     {
         //check if we have a valid touch or not, if not return aka dont update
-        if(!TryGetTouchPosition(out Vector2 touchPosition))
+        if (!TryGetTouchPosition(out Vector2 touchPosition))
         {
             return;
         }
 
         //valid touch? therefore we raycast into the world and check whether the touch is hitting a trackable that is stored
-        if(raycastManager.Raycast(touchPosition,s_Hits,TrackableType.PlaneWithinPolygon))
+        if (raycastManager.Raycast(touchPosition, s_Hits, TrackableType.PlaneWithinPolygon))
         {
             var hitPose = s_Hits[0].pose;
 
@@ -61,7 +61,7 @@ public class SpawnObjects : MonoBehaviour
                 SpawnPrefab(hitPose);
 
             }
-            else if(placedPrefabCount==1)
+            else if (placedPrefabCount == 1)
             {
                 foreach (GameObject gameObject in placedPrefabList)
                 {
@@ -71,9 +71,9 @@ public class SpawnObjects : MonoBehaviour
                 placedPrefabCount = 0;
                 SpawnPrefab(hitPose);
             }
-  
+
         }
- 
+
     }
     public void SetPrefabType(GameObject prefabType)
     {
@@ -83,9 +83,10 @@ public class SpawnObjects : MonoBehaviour
     private void SpawnPrefab(Pose hitPose)
     {
         spawnedObject = Instantiate(placeablePrefab, hitPose.position, hitPose.rotation);//we place the placeable prefab at the the hit pose
-        spawnedObject.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f); //make socket small
-        //spawnedObject.transform.localPosition = new Vector3(hitPose.position.x, -hitPose.position.y, hitPose.position.z);
-        spawnedObject.transform.localRotation = Quaternion.Euler(0f, -180f, 0f);
+       
+        spawnedObject.transform.localScale = new Vector3(0.0005f, 0.0005f, 0.0005f); //make socket small
+  //spawnedObject.transform.localPosition = new Vector3(hitPose.position.x, -hitPose.position.y, hitPose.position.z);
+        spawnedObject.transform.localRotation = Quaternion.Euler(0f, -190f, 0f);
         placedPrefabList.Add(spawnedObject);
         placedPrefabCount++;
     }

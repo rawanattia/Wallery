@@ -1,7 +1,6 @@
-﻿using UnityEngine.UI;
-using System.Text;
-
+﻿using System.Text;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 namespace UnityEngine.XR.ARFoundation.Samples
 {
@@ -36,7 +35,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
             get { return m_AmbientColorText; }
             set { m_AmbientColorText = value; }
         }
-        
+
         [Tooltip("The UI Text element used to display the estimated direction of the main light for the physical environment.")]
         [SerializeField]
         Text m_MainLightDirectionText;
@@ -90,7 +89,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
                 SetUIValue(m_HDRLightEstimation.colorCorrection, ambientColorText);
             else
                 SetUIValue<float>(null, ambientColorText);
-            
+
             //Display HDR only light estimation info
             SetUIValue(m_HDRLightEstimation.mainLightDirection, mainLightDirectionText);
             SetUIValue(m_HDRLightEstimation.mainLightColor, mainLightColorText);
@@ -131,7 +130,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
         void SetUIValue<T>(T? displayValue, Text text) where T : struct
         {
             if (text != null)
-                text.text = displayValue.HasValue ? displayValue.Value.ToString(): k_UnavailableText;
+                text.text = displayValue.HasValue ? displayValue.Value.ToString() : k_UnavailableText;
         }
 
         const string k_UnavailableText = "Unavailable";

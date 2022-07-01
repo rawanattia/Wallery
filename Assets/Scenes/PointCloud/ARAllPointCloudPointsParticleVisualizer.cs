@@ -80,24 +80,24 @@ namespace UnityEngine.XR.ARFoundation
             switch (mode)
             {
                 case Mode.All:
-                {
-                    // Draw all the particles
-                    int particleIndex = 0;
-                    foreach (var kvp in m_Points)
                     {
-                        SetParticlePosition(particleIndex++, kvp.Value);
+                        // Draw all the particles
+                        int particleIndex = 0;
+                        foreach (var kvp in m_Points)
+                        {
+                            SetParticlePosition(particleIndex++, kvp.Value);
+                        }
+                        break;
                     }
-                    break;
-                }
                 case Mode.CurrentFrame:
-                {
-                    // Only draw the particles in the current frame
-                    for (int i = 0; i < positions.Length; ++i)
                     {
-                        SetParticlePosition(i, positions[i]);
+                        // Only draw the particles in the current frame
+                        for (int i = 0; i < positions.Length; ++i)
+                        {
+                            SetParticlePosition(i, positions[i]);
+                        }
+                        break;
                     }
-                    break;
-                }
             }
 
             // Remove any existing particles by setting remainingLifetime

@@ -1,8 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.XR.ARFoundation;
-
-namespace UnityEngine.XR.ARFoundation.Samples
+﻿namespace UnityEngine.XR.ARFoundation.Samples
 {
     /// <summary>
     /// A component that can be used to access the most recently received basic light estimation information
@@ -50,8 +46,8 @@ namespace UnityEngine.XR.ARFoundation.Samples
         /// The estimated color correction value of the physical environment, if available.
         /// </summary>
         public Color? colorCorrection { get; private set; }
-        
-        void Awake ()
+
+        void Awake()
         {
             m_Light = GetComponent<Light>();
         }
@@ -67,7 +63,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
             if (m_CameraManager != null)
                 m_CameraManager.frameReceived -= FrameChanged;
         }
-        
+
         void FrameChanged(ARCameraFrameEventArgs args)
         {
             if (args.lightEstimation.averageBrightness.HasValue)

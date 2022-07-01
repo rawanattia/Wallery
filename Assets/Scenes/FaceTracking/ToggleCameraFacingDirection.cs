@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.XR.ARFoundation;
-
-namespace UnityEngine.XR.ARFoundation.Samples
+﻿namespace UnityEngine.XR.ARFoundation.Samples
 {
     public class ToggleCameraFacingDirection : MonoBehaviour
     {

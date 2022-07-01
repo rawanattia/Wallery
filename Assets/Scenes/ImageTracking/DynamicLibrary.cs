@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Text;
-using Unity.Jobs;
-using UnityEngine;
-
-using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
 namespace UnityEngine.XR.ARFoundation.Samples
@@ -87,35 +83,35 @@ namespace UnityEngine.XR.ARFoundation.Samples
             switch (m_State)
             {
                 case State.NoImagesAdded:
-                {
-                    if (GUILayout.Button("Add images"))
                     {
-                        m_State = State.AddImagesRequested;
-                    }
+                        if (GUILayout.Button("Add images"))
+                        {
+                            m_State = State.AddImagesRequested;
+                        }
 
-                    break;
-                }
-                case State.AddingImages:
-                {
-                    m_StringBuilder.Clear();
-                    m_StringBuilder.AppendLine("Add image status:");
-                    foreach (var image in m_Images)
-                    {
-                        m_StringBuilder.AppendLine($"\t{image.name}: {(image.jobState.status.ToString())}");
+                        break;
                     }
-                    GUILayout.Label(m_StringBuilder.ToString());
-                    break;
-                }
+                case State.AddingImages:
+                    {
+                        m_StringBuilder.Clear();
+                        m_StringBuilder.AppendLine("Add image status:");
+                        foreach (var image in m_Images)
+                        {
+                            m_StringBuilder.AppendLine($"\t{image.name}: {(image.jobState.status.ToString())}");
+                        }
+                        GUILayout.Label(m_StringBuilder.ToString());
+                        break;
+                    }
                 case State.Done:
-                {
-                    GUILayout.Label("All images added");
-                    break;
-                }
+                    {
+                        GUILayout.Label("All images added");
+                        break;
+                    }
                 case State.Error:
-                {
-                    GUILayout.Label(m_ErrorMessage);
-                    break;
-                }
+                    {
+                        GUILayout.Label(m_ErrorMessage);
+                        break;
+                    }
             }
 
             GUILayout.EndArea();
@@ -132,78 +128,78 @@ namespace UnityEngine.XR.ARFoundation.Samples
             switch (m_State)
             {
                 case State.AddImagesRequested:
-                {
-                    if (m_Images == null)
                     {
-                        SetError("No images to add.");
-                        break;
-                    }
-
-                    var manager = GetComponent<ARTrackedImageManager>();
-                    if (manager == null)
-                    {
-                        SetError($"No {nameof(ARTrackedImageManager)} available.");
-                        break;
-                    }
-
-                    // You can either add raw image bytes or use the extension method (used below) which accepts
-                    // a texture. To use a texture, however, its import settings must have enabled read/write
-                    // access to the texture.
-                    foreach (var image in m_Images)
-                    {
-                        if (!image.texture.isReadable)
+                        if (m_Images == null)
                         {
-                            SetError($"Image {image.name} must be readable to be added to the image library.");
+                            SetError("No images to add.");
                             break;
                         }
-                    }
 
-                    if (manager.referenceLibrary is MutableRuntimeReferenceImageLibrary mutableLibrary)
-                    {
-                        try
+                        var manager = GetComponent<ARTrackedImageManager>();
+                        if (manager == null)
                         {
-                            foreach (var image in m_Images)
+                            SetError($"No {nameof(ARTrackedImageManager)} available.");
+                            break;
+                        }
+
+                        // You can either add raw image bytes or use the extension method (used below) which accepts
+                        // a texture. To use a texture, however, its import settings must have enabled read/write
+                        // access to the texture.
+                        foreach (var image in m_Images)
+                        {
+                            if (!image.texture.isReadable)
                             {
-                                // Note: You do not need to do anything with the returned JobHandle, but it can be
-                                // useful if you want to know when the image has been added to the library since it may
-                                // take several frames.
-                                image.jobState = mutableLibrary.ScheduleAddImageWithValidationJob(image.texture, image.name, image.width);
+                                SetError($"Image {image.name} must be readable to be added to the image library.");
+                                break;
                             }
-
-                            m_State = State.AddingImages;
                         }
-                        catch (InvalidOperationException e)
+
+                        if (manager.referenceLibrary is MutableRuntimeReferenceImageLibrary mutableLibrary)
                         {
-                            SetError($"ScheduleAddImageJob threw exception: {e.Message}");
-                        }
-                    }
-                    else
-                    {
-                        SetError($"The reference image library is not mutable.");
-                    }
+                            try
+                            {
+                                foreach (var image in m_Images)
+                                {
+                                    // Note: You do not need to do anything with the returned JobHandle, but it can be
+                                    // useful if you want to know when the image has been added to the library since it may
+                                    // take several frames.
+                                    image.jobState = mutableLibrary.ScheduleAddImageWithValidationJob(image.texture, image.name, image.width);
+                                }
 
-                    break;
-                }
+                                m_State = State.AddingImages;
+                            }
+                            catch (InvalidOperationException e)
+                            {
+                                SetError($"ScheduleAddImageJob threw exception: {e.Message}");
+                            }
+                        }
+                        else
+                        {
+                            SetError($"The reference image library is not mutable.");
+                        }
+
+                        break;
+                    }
                 case State.AddingImages:
-                {
-                    // Check for completion
-                    var done = true;
-                    foreach (var image in m_Images)
                     {
-                        if (!image.jobState.jobHandle.IsCompleted)
+                        // Check for completion
+                        var done = true;
+                        foreach (var image in m_Images)
                         {
-                            done = false;
-                            break;
+                            if (!image.jobState.jobHandle.IsCompleted)
+                            {
+                                done = false;
+                                break;
+                            }
                         }
-                    }
 
-                    if (done)
-                    {
-                        m_State = State.Done;
-                    }
+                        if (done)
+                        {
+                            m_State = State.Done;
+                        }
 
-                    break;
-                }
+                        break;
+                    }
             }
         }
     }

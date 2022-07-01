@@ -1,5 +1,3 @@
-using UnityEngine.XR.ARFoundation;
-
 namespace UnityEngine.XR.ARFoundation.Samples
 {
     public class CameraSwapper : MonoBehaviour
