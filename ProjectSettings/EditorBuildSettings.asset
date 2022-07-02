@@ -131,7 +131,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlaneChanger.unity
     guid: 1909d3f1839c6c84dbca3669a59ea5b0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/lighting.unity
     guid: adb0d4785c8add74bbd30ce871fa8bd9
   m_configObjects:

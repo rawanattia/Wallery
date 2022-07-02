@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5262199206127469938}
   - component: {fileID: 2163273239563068895}
   - component: {fileID: 3857120244134577210}
+  - component: {fileID: 2048367894186695271}
   m_Layer: 0
   m_Name: ChangingPlane
   m_TagString: Untagged
@@ -225,3 +226,18 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 0
   m_Loop: 1
+--- !u!114 &2048367894186695271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222045616537228724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6ca728ecc08ba24fb1b7b08ed361cb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arPlane: {fileID: 3918581180605251679}
+  area: 0
+  txt: {fileID: 0}
